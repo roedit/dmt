@@ -2,15 +2,37 @@
   "name": "dmt",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
+    "@material-ui/core": "^4.7.1",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/styles": "^4.7.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "mobx": "^5.15.0",
+    "mobx-react": "^6.1.4",
+    "mobx-router": "^0.0.20",
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-intl": "^2.8.0",
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "i18n": "node scripts/i18n.js",
+    "start": "npm run i18n && react-app-rewired start",
+    "build": "npm run i18n && react-app-rewired build",
+    "test": "npm run i18n && react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -27,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "customize-cra": "^0.9.1",
+    "react-app-rewired": "^2.1.5"
   }
 }
